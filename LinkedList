@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct node
+{
+	int data;
+	struct node* next;
+	
+}node;
+
+node* root = NULL;
+
+void push_front(int data)
+{ 
+   node* new_node = (node*)malloc(sizeof(node));
+
+    new_node->data = data;
+    new_node->next = root;
+    root = new_node;
+}
+
+
+void push_back(int data)
+{
+    node* current = root;
+    while (current->next != NULL)
+    {
+        current = current->next;
+    } 
+	current->next = (node*)malloc(sizeof(node));
+    current->next->data = data;
+    current->next->next = NULL;
+}
+
+void print_list()
+{
+    node* current = root;
+
+    while (current != NULL) 
+    {
+        printf("%d\n", current->data);
+        current = current->next;
+    }
+}
+
+int main()
+{
+    push_front(8);
+    push_front(11);
+    push_back(191);
+    push_front(15);
+    push_front(13);
+    print_list();
+	return 0;
+}
